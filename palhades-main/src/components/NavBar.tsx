@@ -1,4 +1,3 @@
-// src/components/NavBar.tsx
 import { motion } from "framer-motion";
 import { SlideLeft, SlideRight } from "../animations/animate";
 
@@ -6,7 +5,6 @@ function NavBar() {
   return (
     <div className="z-10 container mx-auto flex px-6 py-4 lg:px-12">
       <div className="flex items-center justify-center md:justify-between w-full space-x-4 text-theme">
-        {/* Logo */}
         <motion.img
           variants={SlideRight(0.4, 50)}
           initial="initial"
@@ -18,7 +16,6 @@ function NavBar() {
           className="flex"
         />
 
-        {/* Brand Name */}
         <motion.a
           href="#"
           className="font-bold tracking-widest text-5xl md:pl-20 text-transparent bg-clip-text"
@@ -34,7 +31,6 @@ function NavBar() {
           PALHADES
         </motion.a>
 
-        {/* Download App Button */}
         <motion.a
           href="https://play.google.com/store/apps/details?id=com.palhadesmultiservices.palhadesapp&pcampaignid=web_share"
           target="_blank"
