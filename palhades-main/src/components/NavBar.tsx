@@ -3,10 +3,20 @@ import { motion } from "framer-motion";
 import { SlideLeft, SlideRight } from "../animations/animate";
 
 interface NavBarProps {
-  onContactClick: () => void;
+  onContactClick?: () => void; // 👈 Made optional
 }
 
 function NavBar({ onContactClick }: NavBarProps) {
+  // 👇 Provide a default function if not passed
+  const handleContactClick = () => {
+    if (onContactClick) {
+      onContactClick();
+    } else {
+      const contactSection = document.getElementById("contact");
+      contactSection?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="z-10 container mx-auto flex px-6 py-4 lg:px-12">
       <div className="flex items-center justify-center md:justify-between w-full space-x-4 text-theme">
@@ -37,7 +47,7 @@ function NavBar({ onContactClick }: NavBarProps) {
         </motion.a>
 
         <motion.button
-          onClick={onContactClick}
+          onClick={handleContactClick}
           variants={SlideLeft(0.4, 150)}
           initial="initial"
           whileInView="animate"
