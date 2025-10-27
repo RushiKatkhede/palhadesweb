@@ -12,7 +12,7 @@ export const Contact = () => {
     setResult("");
 
     const formData = new FormData(e.target);
-    formData.append("access_key", "4bdfba5a-531b-4be6-bc7c-d8c5cbfc29fd");
+    formData.append("access_key", "4bdfba5a-531b-4be6-bc7c-d8c5cbfc29fd"); // your Web3Forms key
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -24,7 +24,7 @@ export const Contact = () => {
 
       if (data.success) {
         setResult("✅ Message sent successfully!");
-        e.target.reset();
+        e.target.reset(); // clear form fields
       } else {
         setResult("❌ Failed to send message. Please try again.");
       }
@@ -36,10 +36,9 @@ export const Contact = () => {
   };
 
   return (
-    // 👇 Added this id="contact" so navbar scrolls here
-    <section id="contact" className="m-4 scroll-mt-24">
+    <div className="m-4">
       <div className="flex flex-col md:flex-row items-center justify-center p-6 bg-white rounded-xl w-full shadow-md">
-        {/* Left Side - Heading */}
+        {/* Left Side - Centered Heading */}
         <motion.div
           variants={SlideUp(0.2, 50)}
           initial="initial"
@@ -50,8 +49,7 @@ export const Contact = () => {
             Get in Touch
           </h2>
           <p className="text-gray-600 max-w-md">
-            Palhades is your trusted transportation partner — managing daily supply
-            with reliability and care. Fill in your details and send us a message!
+            We’d love to hear from you! Fill in your details and send us a message.
           </p>
         </motion.div>
 
@@ -145,12 +143,10 @@ export const Contact = () => {
 
           {/* Response Message */}
           {result && (
-            <p className="text-center text-gray-700 font-medium mt-2">
-              {result}
-            </p>
+            <p className="text-center text-gray-700 font-medium mt-2">{result}</p>
           )}
         </form>
       </div>
-    </section>
+    </div>
   );
 };

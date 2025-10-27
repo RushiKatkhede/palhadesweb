@@ -1,86 +1,58 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+// src/components/NavBar.tsx
+import { motion } from "framer-motion";
+import { SlideLeft, SlideRight } from "../animations/animate";
 
-export const NavBar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+interface NavBarProps {
+  onContactClick: () => void;
+}
 
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setMenuOpen(false);
-    }
-  };
-
-  const navLinks = [
-    { label: "Home", id: "home" },
-    { label: "About", id: "about" },
-    { label: "Services", id: "services" },
-    { label: "Contact", id: "contact" },
-  ];
-
+function NavBar({ onContactClick }: NavBarProps) {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+    <div className="z-10 container mx-auto flex px-6 py-4 lg:px-12">
+      <div className="flex items-center justify-center md:justify-between w-full space-x-4 text-theme">
         {/* Logo */}
-        <motion.div
-          className="flex items-center gap-2 cursor-pointer"
-          whileHover={{ scale: 1.05 }}
-          onClick={() => scrollToSection("home")}
+        <motion.img
+          variants={SlideRight(0.4, 50)}
+          initial="initial"
+          whileInView="animate"
+          src="/icon.png"
+          alt="logo"
+          width={48}
+          height={48}
+          className="flex"
+        />
+
+        {/* Company Name */}
+        <motion.a
+          href="#"
+          className="font-bold tracking-widest text-5xl md:pl-20 text-transparent bg-clip-text"
+          whileInView={{
+            backgroundImage: [
+              "linear-gradient(to right,#F25961, #333399)",
+              "linear-gradient(to right,#333399, #F25961)",
+              "linear-gradient(to right,#F25961, #333399)",
+            ],
+          }}
+          transition={{ duration: 1, ease: "linear" }}
         >
-          <img src="/icon.png" alt="Palhades Logo" className="w-8 h-8" />
-          <span className="text-xl font-semibold text-purple-900">
-            Palhades
-          </span>
-        </motion.div>
+          PALHADES
+        </motion.a>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 text-gray-700 font-medium">
-          {navLinks.map((link) => (
-            <li
-              key={link.id}
-              className="cursor-pointer hover:text-purple-700 transition-colors"
-              onClick={() => scrollToSection(link.id)}
-            >
-              {link.label}
-            </li>
-          ))}
-        </ul>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden flex items-center"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle Menu"
+        {/* Download App Button */}
+        <motion.a
+          href="https://play.google.com/store/apps/details?id=com.palhadesmultiservices.palhadesapp&pcampaignid=web_share"
+          target="_blank"
+          rel="noopener noreferrer"
+          variants={SlideLeft(0.4, 150)}
+          initial="initial"
+          whileInView="animate"
+          className="hidden md:flex py-3 px-6 bg-theme text-white hover:bg-header rounded-full shadow hover:shadow-xl transition duration-400"
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu (Animated) */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-white shadow-lg"
-          >
-            <ul className="flex flex-col items-center gap-4 py-4 text-gray-700 font-medium">
-              {navLinks.map((link) => (
-                <li
-                  key={link.id}
-                  className="cursor-pointer hover:text-purple-700 transition-colors"
-                  onClick={() => scrollToSection(link.id)}
-                >
-                  {link.label}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+          <span>Download App</span>
+        </motion.a>
+      </div>
+    </div>
   );
-};
+}
+
+export default NavBar;
