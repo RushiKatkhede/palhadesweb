@@ -7,7 +7,7 @@ import HeroSection from "../components/HeroSection";
 import NavBar from "../components/NavBar";
 import ServicesSection from "../components/ServicesSection";
 import { Testimonial } from "../components/Testimonial";
-import {Footer }from "../components/Footer"; // ✅ ADD THIS
+import { Footer } from "../components/Footer";
 
 function Home() {
   const heroStyle = {
@@ -27,7 +27,7 @@ function Home() {
   return (
     <>
       <ContactsBar />
-      <NavBar />
+      <NavBar /> {/* ✅ No props needed now */}
       <div className="relative overflow-hidden">
         <motion.div
           className="z-5 mb-8"
@@ -69,7 +69,7 @@ function Home() {
 
       <Testimonial />
       <Contact />
-      <Footer /> {/* ✅ ADD THIS */}
+      <Footer />
     </>
   );
 }
