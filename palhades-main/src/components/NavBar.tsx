@@ -2,11 +2,7 @@
 import { motion } from "framer-motion";
 import { SlideLeft, SlideRight } from "../animations/animate";
 
-interface NavBarProps {
-  onContactClick: () => void;
-}
-
-function NavBar({ onContactClick }: NavBarProps) {
+function NavBar() {
   return (
     <div className="z-10 container mx-auto flex px-6 py-4 lg:px-12">
       <div className="flex items-center justify-center md:justify-between w-full space-x-4 text-theme">
