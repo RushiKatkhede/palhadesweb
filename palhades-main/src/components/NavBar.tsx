@@ -12,13 +12,13 @@ function NavBar() {
           initial="initial"
           whileInView="animate"
           src="/icon.png"
-          alt="logo"
+          alt="Palhades logo"
           width={48}
           height={48}
           className="flex"
         />
 
-        {/* Company Name */}
+        {/* Brand Name */}
         <motion.a
           href="#"
           className="font-bold tracking-widest text-5xl md:pl-20 text-transparent bg-clip-text"
